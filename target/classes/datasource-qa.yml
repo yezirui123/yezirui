@@ -1,0 +1,10 @@
+datasource:
+  driverClassName: com.mysql.cj.jdbc.Driver
+  mes:
+    url: jdbc:mysql://192.168.22.6:3306/spinning_9005?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&zeroDateTimeBehavior=convertToNull&serverTimezone=Asia/Shanghai
+    username: spinningmes_qa
+    password: To2E8lXva5u1GrOGiyoky4xZhe1iv9Cw
+  mes-collect:
+    url: jdbc:mysql://192.168.22.6:3306/spinning_9005_collect?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&zeroDateTimeBehavior=convertToNull&serverTimezone=Asia/Shanghai
+    username: spinningmes_qa
+    password: To2E8lXva5u1GrOGiyoky4xZhe1iv9Cw

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>上传文件</title>
+    <script src="http://lib.sinaapp.com/js/jquery/1.9.1/jquery-1.9.1.min.js"></script>
+    <!-- CSS goes in the document HEAD or added to your external stylesheet -->
+    <style type="text/css">
+        table.gridtable {
+            width: 95%;
+            font-family: verdana,arial,sans-serif;
+            font-size: 8px;
+            font-color: #00ff00;
+            border-style: solid;
+            border-width: 2px;
+            border-color: #082567;
+            border-collapse: collapse;
+        }
+        p{
+            font-family: verdana,arial,sans-serif;
+            font-size: 8px;
+            color:#333333;
+        }
+        table.gridtable th {
+            padding: 12px;
+            border-style: solid;
+            border-width: 2px;
+            border-color: #082567;
+            background-color: #dedede;
+            text-align: center;
+        }
+        table.gridtable td {
+            padding: 12px;
+            border-style: solid;
+            border-width: 2px;
+            border-color: #082567;
+            background-color: #ffffff;
+            text-align: left;
+        }
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: rgba(255,0,255,0.1);
+        }
+        .cbody{
+            display: flex;
+            width: 100%;
+            height: 100%;
+            justify-content: top;
+            align-items: top;
+            transform: rotate(-60deg);
+            z-index: -1;
+        }
+        .show{
+              position: absolute;
+              left: 500px;
+              top: 200px;
+              z-index: 1;
+              font-size: 40px;
+        }
+        .content{
+            display: flex;
+            width: 100%;
+            height: 100%;
+            justify-content: center;
+            align-items: center;
+            -webkit-box-reflect: below 10px -webkit-linear-gradient(transparent,transparent 50%,rgba(0,47,167,0.1));
+            animation: donghua1 1.5s ease-in-out infinite;
+        }
+        @keyframes donghua1 {
+            0%{
+                transform:translateX(0);
+            }
+            100%{
+                transform:translateX(-200px);
+            }
+        }
+        .cure{
+            width: 200px;
+            height: 200px;
+            background-color: rgb(7, 198, 246);
+            box-shadow: 0 0 5px 5px rgb(24, 178, 216),
+            0 0 30px 15px rgba(26, 177, 214,0.1),
+            0 0 40px 25px rgba(26, 177, 214,0.1);
+            animation: donghua 2s ease-in-out infinite;
+            transform-origin: bottom right;
+        }
+        @keyframes donghua {
+            0%{
+                transform:rotate(0);
+            }
+            60%{
+                transform:rotate(90deg);
+            }
+            60%{
+                transform:rotate(85deg);
+            }
+            60%{
+                transform:rotate(90deg);
+            }
+            75%{
+                transform:rotate(87.5deg);
+            }
+            80%,100%{
+                transform: rotate(90deg);
+            }
+        }
+    </style>
+
+    <script>
+        function upload(){
+            var formData = new FormData(); //创建一个formData对象实例
+            var excelFile = $("#uploadFile").get(0).files[0];
+            formData.append("excelFile",excelFile)
+            $.ajax({
+                url: 'http://localhost/juejin/fileUpload',
+                data: formData,
+                type: 'post',
+                contentType:false, // 必须false才会自动加上正确的Content-Type
+                processData: false, // 必须false才会避开jQuery对 formdata 的默认处理,XMLHttpRequest会对 formdata 进行正确的处理
+                success: function (resp){
+                    console.log(resp);
+                    document.querySelector('#table').innerHTML = resp;
+                    // 后续的操作
+                }
+            })
+        }
+    </script>
+
+</head>
+<body>
+    <div class="cbody" >
+        <div class="content">
+            <div class="cure">
+
+            </div>
+        </div>
+    </div>
+    <div class="show">
+        <H1>上传的文件如下:  </H1>
+        <input multiple="multiple" type="file" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" id="uploadFile">
+        <br>
+        <button onclick="upload()"><H1>上传</H1></button>
+        <div class="gridtable">
+            <table id="table">
+
+            </table>
+        </div>
+    </div>
+</body>
+</html>

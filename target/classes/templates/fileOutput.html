@@ -1,0 +1,49 @@
+
+    <table xmlns:th="http://www.thymeleaf.org">
+        <tr>
+            <th>序号</th>
+            <th>日期</th>
+            <th>时间</th>
+            <th>名字</th>
+            <th>价格</th>
+            <th>手数</th>
+            <th>金额</th>
+        </tr>
+        <tr th:each="dto:${list}" border="2px">
+            <td th:text="${dtoStat.index+1}"
+                style="width:60px;
+                text-align:left;
+                border:solid 1px blue"
+            ></td>
+            <td th:text="${dto.dateStr}"
+                style="width:60px;
+                text-align:left;
+                border:solid 1px blue"
+            ></td>
+            <td th:text="${dto.timeStr}"
+                style="width:60px;
+                text-align:left;
+                border:solid 1px blue"
+            ></td>
+            <td th:text="${dto.name}"
+                style="width:60px;
+                text-align:left;
+                border:solid 1px blue"
+            ></td>
+            <td th:text="${dto.price}"
+                style="width:60px;
+                text-align:left;
+                border:solid 1px blue"
+            ></td>
+            <td th:text="${dto.num}"
+                style="width:60px;
+                text-align:left;
+                border:solid 1px blue"
+            ></td>
+            <td th:text="${dto.totalPrice}"
+                style="width:60px;
+                text-align:left;
+                border:solid 1px blue"
+            ></td>
+        </tr>
+    </table>

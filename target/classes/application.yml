@@ -1,0 +1,45 @@
+server:
+  # 应用服务 WEB 访问端口
+  port: 80
+  # 应用服务访问路径
+  servlet:
+    context-path: /juejin
+#下面这些内容是为了让MyBatis映射
+#指定Mybatis的Mapper文件
+mybatis:
+  mapper-locations: classpath:mappers/*xml
+  #指定Mybatis的实体目录
+  type-aliases-package: tech.zj.quanbu.spinning.ods.dao.dataobject
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+spring:
+  application:
+    # 应用名称
+    name: juejin
+  thymeleaf:
+    cache: false
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 100MB
+  config:
+    import: classpath:datasource-qa.yml
+  datasource:
+    druid:
+      initial-size: 1
+      min-idle: 3
+      max-active: 50
+      max-wait: 10000
+      test-on-borrow: false
+      test-on-return: false
+      test-while-idle: true
+      validation-query: "select 1"
+      filters: stat,slf4j
+      filter:
+        stat:
+          slow-sql-millis: 2000
+          log-slow-sql: true
+logging:
+  level:
+    root: info
